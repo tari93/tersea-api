@@ -1,4 +1,3 @@
-from contextlib import asynccontextmanager
 from fastapi import FastAPI, Depends, HTTPException
 from bson.objectid import ObjectId
 
@@ -6,15 +5,7 @@ from .db import db
 from .models import PyObjectId, Book, UpdateBookModel
 
 
-@asynccontextmanager
-async def initialize_db(app: FastAPI):
-    print("Creating tables")
-    # Base.metadata.create_all(engine)
-    yield
-
-app = FastAPI(
-    lifespan=initialize_db
-)
+app = FastAPI()
 
 books_collection = db.get_collection("books")
 
