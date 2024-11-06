@@ -1,0 +1,18 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - 8000:8000
+    volumes:
+      - ./src:/app
+
+  db:
+    image: mongodb/mongodb-community-server:5.0.22-ubuntu2004
+    # env_file: env/db.env
+    ports:
+      - 27017:27017
+    # volumes:
+    #   - ./config/mongo-init.js:/docker-entrypoint-initdb.d/
